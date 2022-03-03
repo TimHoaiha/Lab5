@@ -6,12 +6,10 @@ module smallRAM(rw, dataIn, CS, address, clk, dataOut);
 	input clk;
 	input CS;
 	
-	parameter adr_width=6;
 	
-	parameter ram_depth= 1 << adr_width;
 	
 	reg[7:0]memOut;
-	reg[7:0]mem[0:ram_depth-1];
+	reg[7:0]mem[0:5];
 	
 	output [7:0] dataOut;
 	
