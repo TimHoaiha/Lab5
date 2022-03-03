@@ -1,0 +1,54 @@
+module RAM_tb();
+
+reg [31:0] Din;
+reg [7:0] address; 
+reg clk, rw;
+
+wire [31:0] Dout;
+
+// module RAM (Din, address, Dout, clk, rw);
+RAM dut (.Din(Din), .address(address),.Dout(Dout), .clk(clk), .rw(rw));
+
+
+//clock cycle is 20
+initial begin
+clk = 0;
+
+
+forever
+ #10 clk = ~clk;
+end
+
+/*
+rw = 1 - write
+rw = 0 - read
+*/
+
+initial begin
+#40;
+rw= 1;
+
+address= 8'd100;
+Din= 32'd25;
+#40;
+
+address= 8'd0;
+Din= 32'd50;
+#40;
+
+address= 8'd255;
+Din= 32'd45;
+#40;
+
+
+rw= 0;
+
+address= 8'd100;
+#40;
+address= 8'd255;
+#40;
+address= 8'd0;
+#40;
+
+end
+endmodule
